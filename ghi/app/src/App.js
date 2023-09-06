@@ -3,6 +3,7 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 
 import TechnicianList from './TechnicianList';
+import TechnicianForm from './TechnicianForm';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
 
           <Route path="technicians">
             <Route path="" element={<TechnicianList />} />
-
+            <Route path="new" element={<TechnicianForm />} />
           </Route>
         </Routes>
       </div>
