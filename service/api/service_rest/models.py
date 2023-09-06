@@ -25,6 +25,7 @@ class Appointment(models.Model):
     status = models.CharField(max_length=100)
     vin = models.CharField(max_length=17)
     customer = models.CharField(max_length=100)
+    vip = models.BooleanField(default=False)
 
     technician = models.ForeignKey(
         Technician,

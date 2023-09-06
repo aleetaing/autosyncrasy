@@ -28,6 +28,7 @@ class AppointmentEncoder(ModelEncoder):
         "vin",
         "customer",
         "technician",
+        "vip",
     ]
     encoders = {
         # "vin": AutomobileVOEncoder(),

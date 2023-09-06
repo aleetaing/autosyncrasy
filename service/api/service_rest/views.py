@@ -6,12 +6,9 @@ from django.utils import timezone
 # from django.core.exceptions import ValidationError
 # from datetime import datetime
 
-from .encoders import (
-    TechnicianEncoder,
-    AppointmentEncoder,
-)
+from .encoders import TechnicianEncoder, AppointmentEncoder
 
-from .models import Technician, Appointment
+from .models import Technician, AutomobileVO, Appointment
 
 @require_http_methods(["GET", "POST"])
 def api_technicians(request):
@@ -41,16 +38,12 @@ def api_technicians(request):
 def api_technician(request, pk):
     if request.method == "DELETE":
         try:
-            technician = Technician.objects.get(id=pk)
-            technician.delete()
-            return JsonResponse(
-                technician,
-                encoder=TechnicianEncoder,
-                safe=False,
-            )
+            count, _ = Technician.objects.get(id=pk).delete()
+            return JsonResponse({"deleted": count > 0})
         except Technician.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"}
+                {"message": "Technician does not exist"},
+                status=404
             )
 
 @require_http_methods(["GET", "POST"])
@@ -74,6 +67,12 @@ def api_appointments(request):
                 status=400,
             )
 
+        if AutomobileVO.objects.filter(vin=content["vin"]).exists():
+            content["vip"] = True
+        else:
+            content["vip"] = False
+
+
         appointment = Appointment.objects.create(**content)
         return JsonResponse(
             appointment,
@@ -85,16 +84,12 @@ def api_appointments(request):
 def api_appointment(request, pk):
     if request.method == "DELETE":
         try:
-            appointment = Appointment.objects.get(id=pk)
-            appointment.delete()
-            return JsonResponse(
-                appointment,
-                encoder=AppointmentEncoder,
-                safe=False,
-            )
+            count, _ = Appointment.objects.get(id=pk).delete()
+            return JsonResponse({"deleted": count > 0})
         except Appointment.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"}
+                {"message": "Appointment does not exist"},
+                status=404
             )
     else: # PUT
         try:
@@ -112,6 +107,6 @@ def api_appointment(request, pk):
                 safe=False,
             )
         except Appointment.DoesNotExist:
-            response = JsonResponse({"message": "Does not exist"})
+            response = JsonResponse({"message": "Appointment does not exist"})
             response.status_code = 404
             return response
