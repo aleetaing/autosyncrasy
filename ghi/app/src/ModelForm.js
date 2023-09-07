@@ -45,9 +45,6 @@ export default function ModelForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // const dateTime = new Date(`${date}T${time}`);
-        // const isoDateTime = dateTime.toISOString();
-
         const data = {};
         data.name = name;
         data.picture_url = pictureUrl;
