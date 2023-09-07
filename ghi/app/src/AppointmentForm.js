@@ -62,13 +62,13 @@ export default function AppointmentForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const dateTime = new Date(`${date}T${time}`);
-        const isoDateTime = dateTime.toISOString();
+        // const dateTime = new Date(`${date}T${time}`);
+        // const isoDateTime = dateTime.toISOString();
 
         const data = {};
         data.vin = vin;
         data.customer = customer;
-        data.date_time = isoDateTime;
+        data.date_time = `${date} ${time}`;
         data.technician = technician;
         data.reason = reason;
 
