@@ -1,3 +1,4 @@
+import './index.css';
 import React, {useState, useEffect } from 'react';
 
 export default function AppointmentForm() {
@@ -83,8 +84,8 @@ export default function AppointmentForm() {
 
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
-            const newAppointment = await response.json();
-            console.log(newAppointment);
+            // const newAppointment = await response.json();
+            // console.log(newAppointment);
             setVin('');
             setCustomer('');
             setDate('');

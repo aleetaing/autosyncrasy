@@ -29,7 +29,6 @@ export default function AppointmentList() {
             },
         };
         const response = await fetch(cancelUrl, fetchConfig);
-        console.log(response);
         if (response.ok) {
             fetchData();
         };
