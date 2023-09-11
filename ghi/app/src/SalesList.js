@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
-function SalesList() {
+function SaleList() {
     const [sales, setSales] = useState([]);
 
     const fetchData = async () => {
@@ -21,28 +20,28 @@ function SalesList() {
 
     return (
         <div>
-            <h1>Sales</h1>
+            <h1>sales</h1>
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Salesperson Employee ID</th>
-                        <th>Salesperson Name</th>
+                        <th>Employee ID</th>
+                        <th>Name</th>
                         <th>Customer</th>
                         <th>VIN</th>
                         <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {sales.map(sales => {
-                    const salespersonFullName = `${sales.salesperson.first_name} ${sales.salesperson.last_name}`
-                    const customerFullName = `${sales.customer.first_name} ${sales.customer.last_name}`
+                    {sales.map(sale => {
+                    const salespersonFullName = `${sale.salesperson.first_name} ${sale.salesperson.last_name}`
+                    const customerFullName = `${sale.customer.first_name} ${sale.customer.last_name}`
                         return (
-                        <tr key={sales.salesperson.employee_id}>
-                            <td>{sales.salesperson.employee_id}</td>
+                        <tr key={sale.id}>
+                            <td>{sale.salesperson.employee_id}</td>
                             <td>{salespersonFullName}</td>
                             <td>{customerFullName}</td>
-                            <td>{sales.automobile.vin}</td>
-                            <td>${sales.price}</td>
+                            <td>{sale.automobile.vin}</td>
+                            <td>${sale.price}</td>
                         </tr>
                         );
                         })}
@@ -52,4 +51,4 @@ function SalesList() {
     );
 }
 
-export default SalesList;
+export default SaleList;

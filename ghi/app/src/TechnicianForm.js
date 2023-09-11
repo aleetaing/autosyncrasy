@@ -44,8 +44,6 @@ export default function TechnicianForm() {
 
         const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
-            const newTechnician = await response.json()
-            console.log(newTechnician);
             setFirstName('');
             setLastName('');
             setEmployeeId('');

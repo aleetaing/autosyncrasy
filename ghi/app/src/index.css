@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.link-button {
+  background-color: transparent;
+  border: #1a7349;
+  cursor: pointer;
+  display: inline;
+  outline: #1a7349;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:focus {
+  outline: none;
+  background-color: #25945f;
+  box-shadow: 3px 3px 4px #1a7349;
+}
+
+.link-button:hover {
+  outline: none;
+  background-color: #25945f;
+  box-shadow: 3px 3px 4px #1a7349;
+}

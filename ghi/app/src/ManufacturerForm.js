@@ -5,13 +5,10 @@ export default function ManufacturerForm() {
 
     const [name, setName] = useState('');
 
-
-
     const handleNameChange = (e) => {
         const value = e.target.value;
         setName(value);
     }
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
