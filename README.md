@@ -513,16 +513,16 @@ The Sales Microservice has four models:
     <summary markdown="span">GET: List salespeople</summary>
 
     {
-        "technicians": [
+        "salesperson": [
             {
-                "href": "/api/technicians/1/",
                 "id": 1,
-                "first_name": "Aaron",
-                "last_name": "Carranza",
-                "employee_id": "acarranza"
-            }
+                "first_name": "Mike",
+                "last_name": "Gourd",
+                "employee_id": "mgourd"
+            },
         ]
     }
+
 </details>
 
 <details>
@@ -531,16 +531,19 @@ JSON Body Request:
 
     {
         "first_name": "John",
-        "last_name": "Doe",
+        "last_name": "Rogers",
         "employee_id": "jdoe"
     }
 
 Returns:
 
     {
-
-
+	"id": 2,
+	"first_name": "John",
+	"last_name": "Rogers",
+	"employee_id": "jdoe"
     }
+
 </details>
 
 <details>
@@ -564,16 +567,17 @@ Returns:
     <summary markdown="span">GET: List customers</summary>
 
     {
-        "technicians": [
+        "customer": [
             {
-                "href": "/api/technicians/1/",
                 "id": 1,
-                "first_name": "Aaron",
-                "last_name": "Carranza",
-                "employee_id": "acarranza"
+                "first_name": "Jane",
+                "last_name": "Smith",
+                "address": "123 Main St",
+                "phone_number": "1234567890"
             }
-        ]
+	    ]
     }
+
 </details>
 
 <details>
@@ -581,17 +585,22 @@ Returns:
 JSON Body Request:
 
     {
-        "first_name": "John",
-        "last_name": "Doe",
-        "employee_id": "jdoe"
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "address": "123 Main St",
+        "phone_number": 1234567890
     }
 
 Returns:
 
     {
-
-
+        "id": 1,
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "address": "123 Main St",
+        "phone_number": 1234567890
     }
+
 </details>
 
 <details>
@@ -615,16 +624,33 @@ Returns:
     <summary markdown="span">GET: List sales</summary>
 
     {
-        "technicians": [
+        "sales": [
             {
-                "href": "/api/technicians/1/",
                 "id": 1,
-                "first_name": "Aaron",
-                "last_name": "Carranza",
-                "employee_id": "acarranza"
+                "price": 10000,
+                "automobile": {
+                    "import_href": null,
+                    "vin": "1C3CC5FB2AN120174",
+                    "sold": false
+                },
+                "salesperson": {
+                    "id": 1,
+                    "first_name": "Mike",
+                    "last_name": "Gourd",
+                    "employee_id": "mgourd"
+                },
+                "customer": {
+                    "id": 1,
+                    "first_name": "Jane",
+                    "last_name": "Smith",
+                    "address": "123 Main St",
+                    "phone_number": "1234567890"
+                },
+                "salesperson_id": 1
             }
         ]
-    }
+    },
+
 </details>
 
 <details>
@@ -632,17 +658,38 @@ Returns:
 JSON Body Request:
 
     {
-        "first_name": "John",
-        "last_name": "Doe",
-        "employee_id": "jdoe"
+        "price": 5000,
+        "automobile": "1G1PF5SC1C7142797",
+        "salesperson": "jrogers",
+        "customer": 1
     }
 
 Returns:
 
     {
-
-
+        "id": 6,
+        "price": 5000,
+        "automobile": {
+            "import_href": null,
+            "vin": "1G1PF5SC1C7142797",
+            "sold": true
+        },
+        "salesperson": {
+            "id": 2,
+            "first_name": "John",
+            "last_name": "Rogers",
+            "employee_id": "jrogers"
+        },
+        "customer": {
+            "id": 1,
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "address": "123 Main St",
+            "phone_number": "1234567890"
+        },
+        "salesperson_id": 2
     }
+    
 </details>
 
 <details>
