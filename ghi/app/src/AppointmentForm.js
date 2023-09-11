@@ -43,7 +43,7 @@ export default function AppointmentForm() {
     }
 
 
-    // Get the locations list data
+    // Get the technicians list data
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/technicians/';
         const response = await fetch(url);
@@ -63,9 +63,6 @@ export default function AppointmentForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // const dateTime = new Date(`${date}T${time}`);
-        // const isoDateTime = dateTime.toISOString();
-
         const data = {};
         data.vin = vin;
         data.customer = customer;
@@ -84,8 +81,6 @@ export default function AppointmentForm() {
 
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
-            // const newAppointment = await response.json();
-            // console.log(newAppointment);
             setVin('');
             setCustomer('');
             setDate('');

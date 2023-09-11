@@ -71,7 +71,7 @@ export default function AppointmentList() {
                     {appointments.map(appointment => {
                         const vip = appointment.vip === true ? "Yes" : "No";
                         const date = new Date(appointment.date_time).toLocaleDateString();
-                        const time = new Date(appointment.date_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
+                        const time = new Date(appointment.date_time).toLocaleTimeString('en-US', { timeZone: 'UTC', hour: "2-digit", minute: "2-digit"});
                         const technicianName = `${appointment.technician.first_name} ${appointment.technician.last_name}`;
 
                         return (
@@ -96,11 +96,3 @@ export default function AppointmentList() {
     )
 
 }
-// const { date, time } = formatDateTime(appointment.date_time);
-// const [date, timeAndOffset] = appointment.date_time.split("T");
-// const dateTime = new Date(appointment.date_time);
-// const militaryHours = dateTime.getHours() + 7;
-// const mins = String(dateTime.getMinutes()).padStart(2, "0");
-// const seconds = String(dateTime.getSeconds()).padStart(2, "0");
-// const period = militaryHours < 12 ? "AM" : "PM";
-// const hours = militaryHours % 12 || 12;

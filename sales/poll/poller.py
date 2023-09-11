@@ -29,7 +29,6 @@ def get_automobiles():
 def poll(repeat=True):
     while True:
         print('Service poller polling for data')
-        print(AutomobileVO.objects.all())
         try:
             get_automobiles()
         except Exception as e:

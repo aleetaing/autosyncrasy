@@ -54,7 +54,7 @@ export default function ServiceHistory() {
                     {appointments.map(appointment => {
                         const vip = appointment.vip === true ? "Yes" : "No";
                         const date = new Date(appointment.date_time).toLocaleDateString();
-                        const time = new Date(appointment.date_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
+                        const time = new Date(appointment.date_time).toLocaleTimeString('en-US', { timeZone: 'UTC', hour: "2-digit", minute: "2-digit"});
                         const technicianName = `${appointment.technician.first_name} ${appointment.technician.last_name}`;
 
                         return (

@@ -102,8 +102,6 @@ function SaleForm() {
 
 
         if (response1.ok) {
-            const newSale = await response1.json();
-            console.log(newSale);
             setAutomobile('');
             setSalesperson('');
             setCustomer('');
