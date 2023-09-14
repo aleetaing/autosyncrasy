@@ -29,7 +29,7 @@ export default function TechnicianList() {
 
     return (
         <>
-            <Modal opened={opened} onClose={close} size="auto" centered>
+            <Modal opened={opened} onClose={close} size="md" centered>
                 <TechnicianForm onSubmit={handleFormSubmit}/>
             </Modal>
 

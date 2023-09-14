@@ -56,7 +56,7 @@ export default function TechnicianForm({ onSubmit }) {
         //     <div className="offset-3 col-6">
         //         <div className="shadow p-4 mt-4">
                     <>
-                    <h1>Create a New Technician</h1>
+                    <h3 className="mb-4">Create a New Technician</h3>
                     <form onSubmit={handleSubmit} id="create-technician-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleFirstNameChange} value={firstName} placeholder="First Name" required type="text" id="first_name" name="first_name" className="form-control"/>
