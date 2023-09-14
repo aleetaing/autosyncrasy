@@ -1,7 +1,7 @@
 import './index.css';
 import React, { useState } from 'react';
 
-export default function ManufacturerForm() {
+export default function ManufacturerForm({ onSubmit }) {
 
     const [name, setName] = useState('');
 
@@ -26,14 +26,16 @@ export default function ManufacturerForm() {
         const response = await fetch(manufacturerUrl, fetchConfig);
         if (response.ok) {
             setName('');
+            onSubmit();
         };
     }
 
     return (
-        <div className="row">
+        <>
+        {/* <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Create a Manufacturer</h1>
+                <div className="shadow p-4 mt-4"> */}
+                    <h3 className="mb-4">Create a Manufacturer</h3>
                     <form onSubmit={handleSubmit} id="create-manufacturer-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleNameChange} value={name} placeholder="Manufacturer name" required type="text" id="name" name="name" className="form-control"/>
@@ -41,9 +43,10 @@ export default function ManufacturerForm() {
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
-                </div>
+                {/* </div>
             </div>
-        </div>
+        </div> */}
+        </>
     )
 
 }
