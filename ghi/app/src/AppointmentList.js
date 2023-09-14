@@ -1,9 +1,13 @@
 import './index.css';
 import React, { useState, useEffect } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Group, Button } from '@mantine/core';
+import AppointmentForm from './AppointmentForm';
 
 export default function AppointmentList() {
 
     const [appointments, setAppointments] = useState([]);
+    const [opened, { open, close }] = useDisclosure(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8080/api/appointments/";
@@ -17,7 +21,7 @@ export default function AppointmentList() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [appointments]);
 
     const cancelAppointment = async (id) => {
         const cancelUrl = `http://localhost:8080/api/appointments/${id}/cancel/`;
@@ -51,8 +55,15 @@ export default function AppointmentList() {
 
     }
 
+    const handleFormSubmit = () => {
+        close();
+    }
+
     return (
         <>
+            <Modal opened={opened} onClose={close} size="md" centered>
+                <AppointmentForm onSubmit={handleFormSubmit}/>
+            </Modal>
             <h1 className="mb-3 mt-3">Service Appointments</h1>
             <table className="table table-striped">
                 <thead>
@@ -92,6 +103,9 @@ export default function AppointmentList() {
                     })}
                 </tbody>
             </table>
+            <Group position="center">
+                <Button onClick={open}>Create</Button>
+            </Group>
         </>
     )
 
