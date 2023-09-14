@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function SaleForm() {
+function SaleForm({ onSubmit }) {
     const [automobiles, setAutomobiles] = useState([]);
     const [salespeople, setSalespeople] = useState([]);
     const [customers, setCustomers] = useState([]);
@@ -106,16 +106,18 @@ function SaleForm() {
             setSalesperson('');
             setCustomer('');
             setPrice('');
+            onSubmit();
         }
 
 
     }
 
     return (
-        <div className="row">
+        <>
+        {/* <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Record a new sale</h1>
+                <div className="shadow p-4 mt-4"> */}
+                    <h3 className="mb-4">Record a new sale</h3>
                     <form onSubmit={handleSubmit} id="create-sale-form">
                     <div className="mb-3">
                         <select onChange={handleAutomobileChange} value={automobile} required name="auto" id="auto" className="form-select">
@@ -165,13 +167,14 @@ function SaleForm() {
                                 name="price"
                                 className="form-control"
                             />
-                            <label htmlFor="price">0</label>
+                            <label htmlFor="price">Price</label>
                         </div>
                         <button className="btn btn-primary" onClick={() => updateSold(automobile)}>Create</button>
                     </form>
-                </div>
+                {/* </div>
             </div>
-        </div>
+        </div> */}
+    </>
     );
 }
 
