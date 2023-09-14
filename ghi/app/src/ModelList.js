@@ -1,9 +1,13 @@
 import './index.css';
 import React, { useState, useEffect } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Group, Button } from '@mantine/core';
+import ModelForm from './ModelForm';
 
 export default function ModelList() {
 
     const [models, setModels] = useState([]);
+    const [opened, { open, close }] = useDisclosure(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8100/api/models/";
@@ -16,10 +20,18 @@ export default function ModelList() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [models]);
+
+    const handleFormSubmit = () => {
+        close();
+    }
+
 
     return (
         <>
+            <Modal opened={opened} onClose={close} size="md" centered>
+                <ModelForm onSubmit={handleFormSubmit}/>
+            </Modal>
             <h1 className="mb-3 mt-3">Models</h1>
             <table className="table table-striped">
                 <thead>
@@ -41,6 +53,9 @@ export default function ModelList() {
                     })}
                 </tbody>
             </table>
+            <Group position="center">
+                <Button onClick={open}>Create</Button>
+            </Group>
         </>
     )
 
