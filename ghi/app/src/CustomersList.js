@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Group, Button } from '@mantine/core';
+import CustomerForm from './CustomerForm';
 
 function Customerslist() {
     const [customer, setCustomer] = useState([]);
+    const [opened, { open, close }] = useDisclosure(false);
 
     const fetchData = async () => {
         const url = 'http://localhost:8090/api/customers/';
@@ -14,10 +18,17 @@ function Customerslist() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [customer]);
+
+    const handleFormSubmit = () => {
+        close();
+    }
 
     return (
         <div>
+            <Modal opened={opened} onClose={close} size="md" centered>
+                <CustomerForm onSubmit={handleFormSubmit}/>
+            </Modal>
             <h1>Customers</h1>
             <table className="table table-striped">
                 <thead>
@@ -39,6 +50,9 @@ function Customerslist() {
                     ))}
                 </tbody>
             </table>
+            <Group position="center">
+                <Button onClick={open}>Create</Button>
+            </Group>
         </div>
     );
 }
