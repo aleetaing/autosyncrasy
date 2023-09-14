@@ -1,9 +1,13 @@
 import './index.css';
 import React, { useState, useEffect } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Group, Button } from '@mantine/core';
+import AutomobileForm from './AutomobileForm';
 
 export default function AutomobileList() {
 
     const [automobiles, setAutomobiles] = useState([]);
+    const [opened, { open, close }] = useDisclosure(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8100/api/automobiles/";
@@ -16,10 +20,17 @@ export default function AutomobileList() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [automobiles]);
+
+    const handleFormSubmit = () => {
+        close();
+    }
 
     return (
         <>
+            <Modal opened={opened} onClose={close} size="md" centered>
+                <AutomobileForm onSubmit={handleFormSubmit}/>
+            </Modal>
             <h1 className="mb-3 mt-3">Automobiles</h1>
             <table className="table table-striped">
                 <thead>
@@ -48,6 +59,9 @@ export default function AutomobileList() {
                     })}
                 </tbody>
             </table>
+            <Group position="center">
+                <Button onClick={open}>Create</Button>
+            </Group>
         </>
     )
 
