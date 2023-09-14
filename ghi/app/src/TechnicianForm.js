@@ -1,7 +1,7 @@
 import './index.css';
 import React, { useState } from 'react';
 
-export default function TechnicianForm() {
+export default function TechnicianForm({ onSubmit }) {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -47,13 +47,15 @@ export default function TechnicianForm() {
             setFirstName('');
             setLastName('');
             setEmployeeId('');
+            onSubmit();
         };
     }
 
     return (
-        <div className="row">
-            <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
+        // <div className="row">
+        //     <div className="offset-3 col-6">
+        //         <div className="shadow p-4 mt-4">
+                    <>
                     <h1>Create a New Technician</h1>
                     <form onSubmit={handleSubmit} id="create-technician-form">
                         <div className="form-floating mb-3">
@@ -70,9 +72,10 @@ export default function TechnicianForm() {
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
-                </div>
-            </div>
-        </div>
+                    </>
+        //         </div>
+        //     </div>
+        // </div>
     )
 
 }

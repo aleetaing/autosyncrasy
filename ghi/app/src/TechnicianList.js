@@ -1,9 +1,13 @@
 import './index.css';
 import React, { useState, useEffect } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Group, Button } from '@mantine/core';
+import TechnicianForm from './TechnicianForm';
 
 export default function TechnicianList() {
 
     const [technicians, setTechnicians] = useState([]);
+    const [opened, { open, close }] = useDisclosure(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8080/api/technicians/";
@@ -16,10 +20,19 @@ export default function TechnicianList() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [technicians]);
+
+    const handleFormSubmit = () => {
+        close();
+    }
+
 
     return (
         <>
+            <Modal opened={opened} onClose={close} size="auto" centered>
+                <TechnicianForm onSubmit={handleFormSubmit}/>
+            </Modal>
+
             <h1 className="mb-3 mt-3">Technicians</h1>
             <table className="table table-striped">
                 <thead>
@@ -41,6 +54,10 @@ export default function TechnicianList() {
                     })}
                 </tbody>
             </table>
+
+            <Group position="center">
+                <Button onClick={open}>Create</Button>
+            </Group>
         </>
     )
 
