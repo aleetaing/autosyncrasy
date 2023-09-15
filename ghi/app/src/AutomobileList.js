@@ -2,13 +2,39 @@ import './index.css';
 import React, { useState, useEffect } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Group, Button } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+
 import AutomobileForm from './AutomobileForm';
 
 export default function AutomobileList() {
 
     const [automobiles, setAutomobiles] = useState([]);
     const [opened, { open, close }] = useDisclosure(false);
-    const [hasCreated, setHasCreated] = useState(false);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [vinToDelete, setVinToDelete] = useState(null);
+    // const [hasCreated, setHasCreated] = useState(false);
+
+    const openDeleteConfirmation = (vin) => {
+        setVinToDelete(vin);
+        setShowDeleteConfirmation(true);
+    };
+
+    const closeDeleteConfirmation = () => {
+        setShowDeleteConfirmation(false);
+    };
+
+    const confirmDelete = async () => {
+        if (vinToDelete) {
+            await deleteAuto(vinToDelete);
+            closeDeleteConfirmation();
+            notifications.show({
+                title: 'Deleted',
+                message: 'Automobile was deleted',
+                color: 'red',
+                autoClose: 1500,
+            })
+        }
+    };
 
     const fetchData = async () => {
         const url = "http://localhost:8100/api/automobiles/";
@@ -21,7 +47,7 @@ export default function AutomobileList() {
 
     useEffect(() => {
         fetchData();
-    }, [automobiles]);
+    }, []);
 
     const deleteAuto = async (vin) => {
 
@@ -39,25 +65,29 @@ export default function AutomobileList() {
     }
 
     const handleFormSubmit = () => {
-        setHasCreated(true);
-        setTimeout(() => {
-            close();
-        }, 1200);
-        setHasCreated(false);
+        close();
+        fetchData();
+        notifications.show({
+            title: 'Success',
+            message: 'Automobile was successfully added!',
+            color: 'green',
+            autoClose: 1500,
+        })
+
     }
 
-    const formClasses = (!hasCreated) ? '' : 'd-none';
-    const successMessage = (!hasCreated) ? 'd-none' : 'alert alert-success mb-0';
+    // const formClasses = (!hasCreated) ? '' : 'd-none';
+    // const successMessage = (!hasCreated) ? 'd-none' : 'alert alert-success mb-0';
 
     return (
         <>
-            <Modal opened={opened} onClose={close} size="md" centered>
-                <div className={formClasses}>
+            <Modal opened={opened} onClose={close} size="auto" centered>
+                <div>
                     <AutomobileForm onSubmit={handleFormSubmit}/>
                 </div>
-                <div className={successMessage} id="success-message">
+                {/* <div className={successMessage} id="success-message">
                     Automobile successfully added!
-                </div>
+                </div> */}
             </Modal>
 
             <Group>
@@ -89,12 +119,24 @@ export default function AutomobileList() {
                                 <td>{automobile.model.name}</td>
                                 <td>{automobile.model.manufacturer.name}</td>
                                 <td>{sold}</td>
-                                <td><button className="btn btn-danger" onClick={() => deleteAuto(automobile.vin)}>Delete</button></td>
+                                <td><button className="btn btn-danger" onClick={() => openDeleteConfirmation(automobile.vin)}>Delete</button></td>
                             </tr>
                         );
                     })}
                 </tbody>
             </table>
+
+            <Modal opened={showDeleteConfirmation} onClose={closeDeleteConfirmation} size="sm" centered>
+                <div>
+                    <p>Are you sure you want to delete this automobile?</p>
+                    <Button onClick={closeDeleteConfirmation}>
+                        No, don't delete it
+                    </Button>
+                    <Button color="red" onClick={confirmDelete}>
+                        Delete automobile
+                    </Button>
+                </div>
+            </Modal>
 
         </>
     )
