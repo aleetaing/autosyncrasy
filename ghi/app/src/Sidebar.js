@@ -5,12 +5,12 @@ const Sidebar = () => {
     <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{maxWidth: "280px"}}>
       <NavLink to="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         {/* <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> */}
-        <span className="fs-4 fw-semibold">Sidebar</span>
+        <span className="fs-4 fw-bold">CarCar+</span>
       </NavLink>
       <hr />
       <ul className="nav nav-pills flex-column list-unstyled mb-auto">
         <li className="nav-item">
-          <NavLink to="/" className="nav-link" aria-current="page">
+          <NavLink to="/" className="nav-link active" aria-current="page">
             {/* <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg> */}
             Home
           </NavLink>
@@ -30,23 +30,25 @@ const Sidebar = () => {
 
         <li className="mb-1">
           <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#services-collapse" aria-expanded="true">
-            Auto Services
+            Servicing
           </button>
           <div className="collapse" id="services-collapse">
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li><NavLink className="dropdown-item" to="/appointments">Appointments</NavLink></li>
+              <li><NavLink className="dropdown-item" to="/appointments/history">Service History</NavLink></li>
             </ul>
           </div>
         </li>
 
         <li className="mb-1">
           <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#sales-collapse" aria-expanded="true">
-            Vehicle Sales
+            Sales
           </button>
           <div className="collapse" id="sales-collapse">
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li><NavLink className="dropdown-item" to="/customers">Customers</NavLink></li>
               <li><NavLink className="dropdown-item" to="/sales">Sales</NavLink></li>
+              <li><NavLink className="dropdown-item" to="/sales/history">Salesperson History</NavLink></li>
             </ul>
           </div>
         </li>
@@ -68,7 +70,7 @@ const Sidebar = () => {
       <div className="dropdown">
         <NavLink to="#" className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
           {/* <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"> */}
-          <strong>ATAH</strong>
+          <strong>User</strong>
         </NavLink>
         <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
           <li><NavLink className="dropdown-item" to="#">New project...</NavLink></li>
