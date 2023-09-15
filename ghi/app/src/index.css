@@ -33,3 +33,18 @@ code {
   background-color: #25945f;
   box-shadow: 3px 3px 4px #1a7349;
 }
+
+
+.nav-item.active,
+.nav-link.active,
+.dropdown-item.active {
+  background-color: transparent;
+  color: inherit;
+}
+
+.btn-toggle:hover,
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: rgba(0, 0, 0, .85);
+  background-color: #d2f4ea;
+}

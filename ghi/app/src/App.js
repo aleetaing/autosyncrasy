@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
-import Nav from './Nav';
+// import Nav from './Nav';
+import Sidebar from './Sidebar';
 import SalesPersonForm from './SalespersonForm';
 import SalespersonList from './SalespeopleList';
 import CustomerForm from './CustomerForm';
@@ -24,52 +25,58 @@ import AutomobileForm from './AutomobileForm';
 function App() {
   return (
     <BrowserRouter>
-      <Nav />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<MainPage />} />
+    <div className="container">
+      <div className="row m-5">
+        <div className="col-md-3">
+          <Sidebar />
+        </div>
+        <div className="col-md-9">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
 
-          <Route path="manufacturers">
-            <Route path="" element={<ManufacturerList />} />
-            <Route path="new" element={<ManufacturerForm />} />
-          </Route>
+            <Route path="manufacturers">
+              <Route path="" element={<ManufacturerList />} />
+              <Route path="new" element={<ManufacturerForm />} />
+            </Route>
 
-          <Route path="models">
-            <Route path="" element={<ModelList />} />
-            <Route path="new" element={<ModelForm />} />
-          </Route>
+            <Route path="models">
+              <Route path="" element={<ModelList />} />
+              <Route path="new" element={<ModelForm />} />
+            </Route>
 
-          <Route path="automobiles">
-            <Route path="" element={<AutomobileList />} />
-            <Route path="new" element={<AutomobileForm />} />
-          </Route>
+            <Route path="automobiles">
+              <Route path="" element={<AutomobileList />} />
+              <Route path="new" element={<AutomobileForm />} />
+            </Route>
 
-          <Route path="technicians">
-            <Route path="" element={<TechnicianList />} />
-            <Route path="new" element={<TechnicianForm />} />
-          </Route>
+            <Route path="technicians">
+              <Route path="" element={<TechnicianList />} />
+              <Route path="new" element={<TechnicianForm />} />
+            </Route>
 
-          <Route path="appointments">
-            <Route path="" element={<AppointmentList />} />
-            <Route path="new" element={<AppointmentForm />} />
-            <Route path="history" element={<ServiceHistory />} />
-          </Route>
+            <Route path="appointments">
+              <Route path="" element={<AppointmentList />} />
+              <Route path="new" element={<AppointmentForm />} />
+              <Route path="history" element={<ServiceHistory />} />
+            </Route>
 
-          <Route path="salespeople">
-            <Route path="" element={<SalespersonList/>} />
-            <Route path="create" element={<SalesPersonForm />} />
-          </Route>
-          <Route path="customers">
-            <Route path="" element={<CustomersList/>} />
-            <Route path="create" element={<CustomerForm />} />
-          </Route>
-          <Route path="sales">
-            <Route path="" element={<SalesList />} />
-            <Route path="create" element={<SaleForm />} />
-            <Route path="history" element={<SalespersonHistory />} />
-          </Route>
-        </Routes>
+            <Route path="salespeople">
+              <Route path="" element={<SalespersonList/>} />
+              <Route path="create" element={<SalesPersonForm />} />
+            </Route>
+            <Route path="customers">
+              <Route path="" element={<CustomersList/>} />
+              <Route path="create" element={<CustomerForm />} />
+            </Route>
+            <Route path="sales">
+              <Route path="" element={<SalesList />} />
+              <Route path="create" element={<SaleForm />} />
+              <Route path="history" element={<SalespersonHistory />} />
+            </Route>
+          </Routes>
+        </div>
       </div>
+    </div>
     </BrowserRouter>
   );
 }
