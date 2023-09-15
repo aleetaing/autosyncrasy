@@ -6,6 +6,7 @@ import CustomerForm from './CustomerForm';
 function Customerslist() {
     const [customer, setCustomer] = useState([]);
     const [opened, { open, close }] = useDisclosure(false);
+    const [hasCreated, setHasCreated] = useState(false);
 
     const fetchData = async () => {
         const url = 'http://localhost:8090/api/customers/';
@@ -21,13 +22,24 @@ function Customerslist() {
     }, [customer]);
 
     const handleFormSubmit = () => {
-        close();
+        setHasCreated(true);
+        setTimeout(() => {
+            close();
+        }, 1200);
     }
+
+    const formClasses = (!hasCreated) ? '' : 'd-none';
+    const successMessage = (!hasCreated) ? 'd-none' : 'alert alert-success mb-0';
 
     return (
         <div>
             <Modal opened={opened} onClose={close} size="md" centered>
-                <CustomerForm onSubmit={handleFormSubmit}/>
+                <div className={formClasses}>
+                    <CustomerForm onSubmit={handleFormSubmit}/>
+                </div>
+                <div className={successMessage} id="success-message">
+                    Your appointment has been successfully created!
+                </div>
             </Modal>
 
             <Group>

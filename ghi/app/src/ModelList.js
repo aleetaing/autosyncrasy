@@ -8,6 +8,7 @@ export default function ModelList() {
 
     const [models, setModels] = useState([]);
     const [opened, { open, close }] = useDisclosure(false);
+    const [hasCreated, setHasCreated] = useState(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8100/api/models/";
@@ -23,14 +24,24 @@ export default function ModelList() {
     }, [models]);
 
     const handleFormSubmit = () => {
-        close();
+        setHasCreated(true);
+        setTimeout(() => {
+            close();
+        }, 1200);
     }
 
+    const formClasses = (!hasCreated) ? '' : 'd-none';
+    const successMessage = (!hasCreated) ? 'd-none' : 'alert alert-success mb-0';
 
     return (
         <>
             <Modal opened={opened} onClose={close} size="md" centered>
-                <ModelForm onSubmit={handleFormSubmit}/>
+                <div className={formClasses}>
+                    <ModelForm onSubmit={handleFormSubmit}/>
+                </div>
+                <div className={successMessage} id="success-message">
+                    Model successfully added!
+                </div>
             </Modal>
 
             <Group>

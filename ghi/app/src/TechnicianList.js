@@ -8,6 +8,7 @@ export default function TechnicianList() {
 
     const [technicians, setTechnicians] = useState([]);
     const [opened, { open, close }] = useDisclosure(false);
+    const [hasCreated, setHasCreated] = useState(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8080/api/technicians/";
@@ -23,14 +24,24 @@ export default function TechnicianList() {
     }, [technicians]);
 
     const handleFormSubmit = () => {
-        close();
+        setHasCreated(true);
+        setTimeout(() => {
+            close();
+        }, 1200);
     }
 
+    const formClasses = (!hasCreated) ? '' : 'd-none';
+    const successMessage = (!hasCreated) ? 'd-none' : 'alert alert-success mb-0';
 
     return (
         <>
             <Modal opened={opened} onClose={close} size="md" centered>
-                <TechnicianForm onSubmit={handleFormSubmit}/>
+                <div className={formClasses}>
+                    <TechnicianForm onSubmit={handleFormSubmit}/>
+                </div>
+                <div className={successMessage} id="success-message">
+                    Technician successfully added!
+                </div>
             </Modal>
 
             <Group>

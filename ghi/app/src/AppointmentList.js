@@ -8,6 +8,7 @@ export default function AppointmentList() {
 
     const [appointments, setAppointments] = useState([]);
     const [opened, { open, close }] = useDisclosure(false);
+    const [hasCreated, setHasCreated] = useState(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8080/api/appointments/";
@@ -56,13 +57,24 @@ export default function AppointmentList() {
     }
 
     const handleFormSubmit = () => {
-        close();
+        setHasCreated(true);
+        setTimeout(() => {
+            close();
+        }, 1200);
     }
+
+    const formClasses = (!hasCreated) ? '' : 'd-none';
+    const successMessage = (!hasCreated) ? 'd-none' : 'alert alert-success mb-0';
 
     return (
         <>
             <Modal opened={opened} onClose={close} size="md" centered>
-                <AppointmentForm onSubmit={handleFormSubmit}/>
+                    <div className={formClasses}>
+                        <AppointmentForm onSubmit={handleFormSubmit}/>
+                    </div>
+                    <div className={successMessage} id="success-message">
+                        Your appointment has been successfully created!
+                    </div>
             </Modal>
 
             <Group>
