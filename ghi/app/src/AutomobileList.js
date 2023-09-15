@@ -23,6 +23,21 @@ export default function AutomobileList() {
         fetchData();
     }, [automobiles]);
 
+    const deleteAuto = async (vin) => {
+
+        const url = `http://localhost:8100/api/automobiles/${vin}`;
+        const fetchConfig = {
+            method: "delete"
+        }
+
+        const response = await fetch(url, fetchConfig);
+
+        if (response.ok) {
+            fetchData();
+        };
+
+    }
+
     const handleFormSubmit = () => {
         setHasCreated(true);
         setTimeout(() => {
@@ -73,6 +88,7 @@ export default function AutomobileList() {
                                 <td>{automobile.model.name}</td>
                                 <td>{automobile.model.manufacturer.name}</td>
                                 <td>{sold}</td>
+                                <td><button className="btn btn-danger" onClick={() => deleteAuto(automobile.vin)}>Delete</button></td>
                             </tr>
                         );
                     })}
