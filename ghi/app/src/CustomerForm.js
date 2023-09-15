@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CustomerForm() {
+function CustomerForm({ onSubmit }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [address, setAddress] = useState('');
@@ -50,14 +50,16 @@ function CustomerForm() {
             setLastName('');
             setAddress('');
             setPhoneNumber('');
+            onSubmit();
         }
     }
 
     return (
-        <div className="row">
+        <>
+        {/* <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Add a Customer</h1>
+                <div className="shadow p-4 mt-4"> */}
+                    <h3 className="mb-4">Add a Customer</h3>
                     <form onSubmit={handleSubmit} id="create-customer-form">
                         <div className="form-floating mb-3">
                             <input
@@ -114,9 +116,10 @@ function CustomerForm() {
 
                         <button className="btn btn-primary">Create</button>
                     </form>
-                </div>
+                {/* </div>
             </div>
-        </div>
+        </div> */}
+        </>
     );
 }
 

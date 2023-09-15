@@ -1,7 +1,7 @@
 import './index.css';
 import React, {useState, useEffect } from 'react';
 
-export default function AutomobileForm() {
+export default function AutomobileForm({ onSubmit }) {
     // defining hooks
     const [models, setModels] = useState([]);
     const [color, setColor] = useState('');
@@ -72,16 +72,18 @@ export default function AutomobileForm() {
             setYear('');
             setVin('');
             setModel('');
+            onSubmit();
         };
 
     }
 
 
     return (
-        <div className="row">
+        <>
+        {/* <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Add an Automobile to Inventory</h1>
+                <div className="shadow p-4 mt-4"> */}
+                    <h3 className="mb-4">Add an Automobile to Inventory</h3>
                     <form onSubmit={handleSubmit} id="create-automobile-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleColorChange} value={color} placeholder="Color" required type="text" id="color" name="color" className="form-control"/>
@@ -110,9 +112,10 @@ export default function AutomobileForm() {
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
-                </div>
+                {/* </div>
             </div>
-        </div>
+        </div> */}
+        </>
     )
 
 }

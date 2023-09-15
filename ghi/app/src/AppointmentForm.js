@@ -1,7 +1,7 @@
 import './index.css';
 import React, {useState, useEffect } from 'react';
 
-export default function AppointmentForm() {
+export default function AppointmentForm({ onSubmit }) {
     // defining hooks
     const [technicians, setTechnicians] = useState([]);
     const [vin, setVin] = useState('');
@@ -87,16 +87,18 @@ export default function AppointmentForm() {
             setTime('');
             setTechnician('');
             setReason('');
+            onSubmit();
         };
 
     }
 
 
     return (
-        <div className="row">
+        <>
+        {/* <div className="row">
             <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Create a Service Appointment</h1>
+                <div className="shadow p-4 mt-4"> */}
+                    <h3 className="mb-4">Create a Service Appointment</h3>
                     <form onSubmit={handleSubmit} id="create-appointment-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleVinChange} value={vin} placeholder="Automobile VIN" required type="text" id="vin" name="vin" className="form-control"/>
@@ -134,9 +136,10 @@ export default function AppointmentForm() {
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
-                </div>
+                {/* </div>
             </div>
-        </div>
+        </div> */}
+        </>
     )
 
 }

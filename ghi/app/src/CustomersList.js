@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Group, Button } from '@mantine/core';
+import CustomerForm from './CustomerForm';
 
 function Customerslist() {
     const [customer, setCustomer] = useState([]);
+    const [opened, { open, close }] = useDisclosure(false);
+    const [hasCreated, setHasCreated] = useState(false);
 
     const fetchData = async () => {
         const url = 'http://localhost:8090/api/customers/';
@@ -14,11 +19,36 @@ function Customerslist() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [customer]);
+
+    const handleFormSubmit = () => {
+        setHasCreated(true);
+        setTimeout(() => {
+            close();
+        }, 1200);
+    }
+
+    const formClasses = (!hasCreated) ? '' : 'd-none';
+    const successMessage = (!hasCreated) ? 'd-none' : 'alert alert-success mb-0';
 
     return (
         <div>
-            <h1>Customers</h1>
+            <Modal opened={opened} onClose={close} size="md" centered>
+                <div className={formClasses}>
+                    <CustomerForm onSubmit={handleFormSubmit}/>
+                </div>
+                <div className={successMessage} id="success-message">
+                    Your appointment has been successfully created!
+                </div>
+            </Modal>
+
+            <Group>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                <h1 className="mb-3 mt-3">Customers</h1>
+                <Button onClick={open}>Create</Button>
+                </div>
+            </Group>
+
             <table className="table table-striped">
                 <thead>
                     <tr>

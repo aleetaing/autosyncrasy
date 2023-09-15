@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SalesPersonForm() {
+function SalesPersonForm({ onSubmit }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeId, setEmployeeId] = useState('');
@@ -42,14 +42,16 @@ function SalesPersonForm() {
             setFirstName('');
             setLastName('');
             setEmployeeId('');
+            onSubmit();
         }
     }
 
     return (
-        <div className="row">
-            <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>Add a Salesperson</h1>
+        // <div className="row">
+            // <div className="offset-3 col-6">
+                // <div className="shadow p-4 mt-4">
+                <>
+                    <h3 className="mb-4">Add a Salesperson</h3>
                     <form onSubmit={handleSubmit} id="create-salesperson-form">
                         <div className="form-floating mb-3">
                             <input
@@ -93,9 +95,10 @@ function SalesPersonForm() {
 
                         <button className="btn btn-primary">Create</button>
                     </form>
-                </div>
-            </div>
-        </div>
+                </>
+        //         </div>
+        //     </div>
+        // </div>
     );
 }
 
