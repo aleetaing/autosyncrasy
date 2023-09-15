@@ -27,6 +27,7 @@ export default function TechnicianList() {
         setHasCreated(true);
         setTimeout(() => {
             close();
+            setHasCreated(false);
         }, 1200);
     }
 

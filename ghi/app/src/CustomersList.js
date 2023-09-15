@@ -25,6 +25,7 @@ function Customerslist() {
         setHasCreated(true);
         setTimeout(() => {
             close();
+            setHasCreated(false);
         }, 1200);
     }
 

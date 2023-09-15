@@ -43,6 +43,7 @@ export default function AutomobileList() {
         setTimeout(() => {
             close();
         }, 1200);
+        setHasCreated(false);
     }
 
     const formClasses = (!hasCreated) ? '' : 'd-none';

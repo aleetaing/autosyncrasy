@@ -27,6 +27,7 @@ export default function ModelList() {
         setHasCreated(true);
         setTimeout(() => {
             close();
+            setHasCreated(false);
         }, 1200);
     }
 
