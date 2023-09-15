@@ -32,7 +32,14 @@ export default function ModelList() {
             <Modal opened={opened} onClose={close} size="md" centered>
                 <ModelForm onSubmit={handleFormSubmit}/>
             </Modal>
-            <h1 className="mb-3 mt-3">Models</h1>
+
+            <Group>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                    <h1 className="mb-3 mt-3">Models</h1>
+                    <Button onClick={open}>Create</Button>
+                </div>
+            </Group>
+
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -53,9 +60,6 @@ export default function ModelList() {
                     })}
                 </tbody>
             </table>
-            <Group position="center">
-                <Button onClick={open}>Create</Button>
-            </Group>
         </>
     )
 

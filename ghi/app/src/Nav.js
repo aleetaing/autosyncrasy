@@ -18,11 +18,11 @@ function Nav() {
                 <button className="link-button nav-link dropdown-toggle btn btn-link" type="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Inventory</button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <NavLink className="dropdown-item" aria-current="page" to="/manufacturers">Manufacturers</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/manufacturers/new">Create a Manufacturer</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/manufacturers/new">Create a Manufacturer</NavLink> */}
                   <NavLink className="dropdown-item" aria-current="page" to="/models">Vehicle Models</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/models/new">Create a Vehicle Model</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/models/new">Create a Vehicle Model</NavLink> */}
                   <NavLink className="dropdown-item" aria-current="page" to="/automobiles">Automobiles</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/automobiles/new">Create an Automobile</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/automobiles/new">Create an Automobile</NavLink> */}
                 </ul>
               </li>
             </ul>
@@ -34,9 +34,9 @@ function Nav() {
                 <button className="link-button nav-link dropdown-toggle btn btn-link" type="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Sales</button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <NavLink className="dropdown-item" aria-current="page" to="/customers">Customers</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/customers/create">Add a Customer</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/customers/create">Add a Customer</NavLink> */}
                   <NavLink className="dropdown-item" aria-current="page" to="/sales">Sales</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/sales/create">Add a Sale</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/sales/create">Add a Sale</NavLink> */}
                   <NavLink className="dropdown-item" aria-current="page" to="/sales/history">Sales History</NavLink>
                 </ul>
               </li>
@@ -49,7 +49,7 @@ function Nav() {
                 <button className="link-button nav-link dropdown-toggle btn btn-link" type="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Services</button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <NavLink className="dropdown-item" aria-current="page" to="/appointments">Service Appointments</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/appointments/new">Create a Service Appointment</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/appointments/new">Create a Service Appointment</NavLink> */}
                   <NavLink className="dropdown-item" aria-current="page" to="/appointments/history">Service History</NavLink>
                 </ul>
               </li>
@@ -62,9 +62,9 @@ function Nav() {
                 <button className="link-button nav-link dropdown-toggle btn btn-link" type="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Employees</button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <NavLink className="dropdown-item" aria-current="page" to="/technicians">Technicians</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/technicians/new">Add a Technician</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/technicians/new">Add a Technician</NavLink> */}
                   <NavLink className="dropdown-item" aria-current="page" to="/salespeople">Salespeople</NavLink>
-                  <NavLink className="dropdown-item" aria-current="page" to="/salespeople/create">Add a Salesperson</NavLink>
+                  {/* <NavLink className="dropdown-item" aria-current="page" to="/salespeople/create">Add a Salesperson</NavLink> */}
                 </ul>
               </li>
             </ul>
