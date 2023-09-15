@@ -4,19 +4,14 @@ const Sidebar = () => {
   return (
     <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{maxWidth: "280px"}}>
       <NavLink to="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        {/* <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> */}
         <span className="fs-4 fw-bold">CarCar+</span>
       </NavLink>
       <hr />
       <ul className="nav nav-pills flex-column list-unstyled mb-auto">
-        <li className="nav-item">
-          <NavLink to="/" className="nav-link active" aria-current="page">
-            {/* <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg> */}
-            Home
-          </NavLink>
-        </li>
+
         <li className="mb-1">
-          <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#inventory-collapse" aria-expanded="true">
+          <i class="bi bi-box-fill"></i>
+          <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#inventory-collapse" aria-expanded="false">
             Inventory
           </button>
           <div className="collapse" id="inventory-collapse">
@@ -29,6 +24,7 @@ const Sidebar = () => {
         </li>
 
         <li className="mb-1">
+          <i class="bi bi-wrench"></i>
           <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#services-collapse" aria-expanded="true">
             Servicing
           </button>
@@ -41,6 +37,7 @@ const Sidebar = () => {
         </li>
 
         <li className="mb-1">
+          <i class="bi bi-cash"></i>
           <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#sales-collapse" aria-expanded="true">
             Sales
           </button>
@@ -54,6 +51,7 @@ const Sidebar = () => {
         </li>
 
         <li className="mb-1">
+          <i class="bi bi-people-fill"></i>
           <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#employees-collapse" aria-expanded="true">
             Employees
           </button>
@@ -66,20 +64,7 @@ const Sidebar = () => {
         </li>
 
       </ul>
-      <hr />
-      <div className="dropdown">
-        <NavLink to="#" className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-          {/* <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"> */}
-          <strong>User</strong>
-        </NavLink>
-        <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-          <li><NavLink className="dropdown-item" to="#">New project...</NavLink></li>
-          <li><NavLink className="dropdown-item" to="#">Settings</NavLink></li>
-          <li><NavLink className="dropdown-item" to="#">Profile</NavLink></li>
-          <li><hr className="dropdown-divider" /></li>
-          <li><NavLink className="dropdown-item" to="#">Sign out</NavLink></li>
-        </ul>
-      </div>
+
     </div>
   )
 }
